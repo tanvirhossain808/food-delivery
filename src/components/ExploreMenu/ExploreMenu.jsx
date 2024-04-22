@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { menu_list } from "../../../public/frontend_assets/assets";
 import "./ExploreMenu.css"
 const ExploreMenu = ({ category, setCategory }) => {
