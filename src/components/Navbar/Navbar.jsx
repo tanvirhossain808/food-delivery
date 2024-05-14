@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-constant-condition */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { assets } from "../../../public/frontend_assets/assets";
 import "./Navbar.css"
 import { Link } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContent";
 
 const Navbar = ({ setShowLogin }) => {
-
+    const { getTotalCartAmount } = useContext(StoreContext)
     const [menu, setMenu] = useState("home")
     return (
         <div className="navbar">
@@ -25,7 +26,7 @@ const Navbar = ({ setShowLogin }) => {
                 <div className="navbar-search-icon">
                     <Link to="/cart">
                         <img src={assets.basket_icon} alt="" /></Link>
-                    <div className="dot">
+                    <div className={getTotalCartAmount() === 0 ? "" : "dot"}>
 
                     </div>
                 </div>
