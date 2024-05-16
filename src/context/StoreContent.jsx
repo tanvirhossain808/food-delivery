@@ -12,7 +12,7 @@ const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({})
     const [food_list, setFoodList] = useState([])
-    console.log(food_list);
+
 
 
 
@@ -91,7 +91,6 @@ const StoreContextProvider = (props) => {
         loadData()
 
     }, [])
-    console.log(token);
 
     const contextValue = {
         food_list,
