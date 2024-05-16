@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react";
-import { food_list } from "../../public/frontend_assets/assets";
+import axios from "axios";
+import { createContext, useEffect, useState } from "react";
+// import { food_list } from "../../public/frontend_assets/assets";
 
 export const StoreContext = createContext(null)
 
@@ -10,6 +11,11 @@ export const StoreContext = createContext(null)
 const StoreContextProvider = (props) => {
 
     const [cartItems, setCartItems] = useState({})
+    const [food_list, setFoodList] = useState([])
+    console.log(food_list);
+
+
+
     const url = "http://localhost:8081"
     const [token, setToken] = useState(localStorage.getItem("token") || "")
 
@@ -37,6 +43,24 @@ const StoreContextProvider = (props) => {
         }
         return totalAmount
     }
+
+    const fetchFoodList = async () => {
+        try {
+            const response = await axios.get(url + "/api/food/list")
+            setFoodList(response.data.data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+
+        async function loadData() {
+            await fetchFoodList()
+        }
+        loadData()
+
+    }, [])
+
 
     const contextValue = {
         food_list,
