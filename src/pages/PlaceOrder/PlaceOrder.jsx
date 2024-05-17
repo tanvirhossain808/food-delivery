@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './PlaceOrder.css';
 import { StoreContext } from '../../context/StoreContent';
 import { useNavigate } from 'react-router-dom';
@@ -57,6 +57,19 @@ const PlaceOrder = () => {
     }
     const navigate = useNavigate()
     const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext)
+
+    let i = 2
+    useEffect(() => {
+        if (!token) {
+            navigate("/cart")
+        }
+        else if (getTotalCartAmount() === 0) {
+            navigate("/cart")
+        }
+        i++
+        console.log(i);
+    }, [token])
+
     return (
         <form className='place-order' onSubmit={placeOrder}>
             <div className="place-order-left">
