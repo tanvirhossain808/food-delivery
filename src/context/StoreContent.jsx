@@ -16,7 +16,8 @@ const StoreContextProvider = (props) => {
 
 
 
-    const url = "http://localhost:8081"
+    // const url = "http://localhost:8081"
+    const url = "https://food-delivery-backend-apxv.onrender.com"
     const [token, setToken] = useState(localStorage.getItem("token") || "")
 
     const addToCart = async (itemId) => {
